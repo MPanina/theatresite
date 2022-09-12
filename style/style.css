@@ -3,15 +3,17 @@ a {
     text-decoration: none;
     color: black;
     font-size: 25px;
+    padding-right: 20px;
 }
 
 body {
     background-color: rgb(241, 237, 237);
-    font-family: Arial;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .header {
     padding-bottom: 10px;
+
 }
 
 .flex {
@@ -25,7 +27,14 @@ body {
 
 ul {
     list-style: none;
-    padding: 5;
+
+}
+
+.nameclass {
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .main-container {
@@ -39,11 +48,10 @@ ul {
 }
 
 .poster-item {
-    width: calc((100%-40px) / 5);
+    width: calc((100% - 40px) / 5);
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #000;
 }
 
 .poster-item:not(:last-child) {
@@ -54,7 +62,7 @@ ul {
     display: flex;
     flex: 1;
     object-fit: cover;
-    border-bottom: 1px solid #000;
+    overflow: hidden;
 }
 
 .poster-content-wrapper {
@@ -62,12 +70,14 @@ ul {
     flex-direction: column;
     align-content: center;
     padding: 10px;
+    border: 2px solid rgb(180, 180, 180);
+    border-top: none;
 }
 
 .poster-header {
     margin: 0;
     margin-bottom: 5px;
-  
+
 }
 
 .poster-link {

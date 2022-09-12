@@ -45,14 +45,35 @@ if (!$conn) {
 
     <main class="main">
         <section class="section">
-            <div class="container reg-container">
-                <form action="reg.php" method="POST" enctype="multipart/form-data">
-                    <h2>Введите данные для регистрации</h2>
+            <div class="container auth-container">
+
+                <form action="auth.php" method="POST">
+                    <h2>Введите данные для авторизации</h2>
                     <p>Логин: <input type="text" name="login"></p>
                     <p>Пароль: <input type="password" name="password"></p>
-                    <p>Выберите файл для аватарки: <input type="file" name="filename" size="10"></p>
                     <p><input type="submit" value="Отправить"></p>
                 </form>
+                <?php
+                if (isset($_POST["login"]) && isset($_POST["password"])) {
+                    $login = $_POST["login"];
+                    $auth = "SELECT * FROM `user` WHERE login='$login'";
+                    $authResult = mysqli_query($conn, $auth);
+                    $authAssoc = mysqli_fetch_assoc($authResult);
+                    if (!empty($authAssoc)) {
+                        $hash = $authAssoc['password'];
+                        if (password_verify($_POST['password'], $hash)) {
+                            $userid = $authAssoc['id'];
+                            $_SESSION["userid"] = $userid;
+                            echo "Авторизация успешна";
+                        } else {
+                            echo "Пароль неверный";
+                        }
+                    } else {
+                        echo "Пользователя с таким логином не существует(";
+                    }
+                }
+
+                ?>
             </div>
         </section>
     </main>
