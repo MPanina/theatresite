@@ -10,13 +10,11 @@ if (isset($_POST["login"]) && isset($_POST["password"]) && $_FILES && $_FILES["f
     move_uploaded_file($_FILES["filename"]["tmp_name"], $path . $name);
     $login = $_POST["login"];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $userReg = "INSERT INTO `users` (`login`, `password`, `type`) VALUES ('$login', '$password', '$type')";
+    $userReg = "INSERT INTO `user` (`login`, `password`, `type`) VALUES ('$login', '$password', '$type')";
     if ($conn->query($userReg)) {
         echo "Регистрация прошла успешно";
     } else {
         echo "Ошибка: " . $conn->error;
     }
-} else {
-    echo "Введите все данные";
 }
 ?>

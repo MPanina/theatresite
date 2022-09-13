@@ -48,10 +48,30 @@ if (!$conn) {
             <div class="container reg-container">
                 <form action="reg.php" method="POST" enctype="multipart/form-data">
                     <h2>Введите данные для регистрации</h2>
-                    <p>Логин: <input type="text" name="login"></p>
-                    <p>Пароль: <input type="password" name="password"></p>
-                    <p>Выберите файл для аватарки: <input type="file" name="filename" size="10"></p>
-                    <p><input type="submit" value="Отправить"></p>
+                    <p>Логин: <input type="text" name="login" required></p>
+                    <p>Пароль: <input type="password" name="password" required></p>
+                    <p>Выберите файл для аватарки: <input type="file" name="filename" size="10" required></p>
+                    <p><input type="submit" name="submitreg" value="Отправить"></p>
+
+                    <?php
+
+                    if (isset($_POST['submitreg'])) {
+                        $name = $_FILES["filename"]["name"];
+                        $type = $_FILES["filename"]["type"];
+                        $path = __DIR__ . '/img/';
+                        move_uploaded_file($_FILES["filename"]["tmp_name"], $path . $name);
+                        $login = $_POST["login"];
+                        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        $userInsertion = "INSERT INTO `user` (`login`, `password`, `type`) VALUES ('$login', '$password', '$type')";
+                        if ($conn->query($userInsertion)) {
+                            echo "<p class='reg__paragraph'>" . "Регистрация прошла успешно" . "</p>";
+                           
+                        } else {
+                            echo "<p>" . "Ошибка:" . $conn->error . "</p>";
+                        }
+                    }
+
+                    ?>
                 </form>
             </div>
         </section>

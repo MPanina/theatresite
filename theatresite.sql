@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 13 2022 г., 02:47
+-- Время создания: Сен 13 2022 г., 03:29
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -56,8 +56,17 @@ CREATE TABLE `user` (
   `id` int NOT NULL,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `login`, `password`, `type`) VALUES
+(3, 'Dima', '$2y$10$cLXiNuo8HvnCgGYU8BHi3.Fdq95XdaIJlYuiHoHf60watUP6V1iGm', 'image/jpeg'),
+(9, 'Dima', '', ''),
+(10, 'Dima', '$2y$10$WDt0BPMSfEe0fBsV/Pli5.ttCo7ixWzCqleiMjyyppaxk8Gw6P1Ii', 'image/jpeg');
 
 --
 -- Индексы сохранённых таблиц
@@ -89,7 +98,7 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
