@@ -1,7 +1,5 @@
 <?php
-
-session_start();
-$conn = mysqli_connect("localhost", "root", "", "theatresite");
+include 'connect.php';
 if (!$conn) {
     die("Ошибка: " . mysqli_connect_error());
 } else {
@@ -71,9 +69,9 @@ if (!$conn) {
                     Вы&nbsp;можете бронировать билеты, покупать онлайн и&nbsp;заказывать доставку на&nbsp;дом.</p>
             </div>
             <div class="poster">
-
                 <ul class="poster-list">
                     <?php
+                  
                     foreach ($posterSelectResult as $posterRow) {
                         echo "<li class='poster-item'>";
                         echo "<img src='img/" . $posterRow['img'] . "' alt=''>";
@@ -84,9 +82,13 @@ if (!$conn) {
                         echo "<span class='poster-span'>" . "$posterRow[date]" . "</span>";
                         echo "<span class='poster-span'>" . "$posterRow[place]" . "</span>";
                         echo "<span class='poster-span'>" . "$posterRow[price]" . "</span>";
+                        echo "<div class='theatre-about-wrapper'>";
+                        echo "<a href='theatre.php?posterid=" . $posterRow['id'] . "' class='about'>" . "Купить билет" . "</a>";
+                        echo "</div>";
                         echo "</div>";
                         echo "</li>";
                     }
+                   
                     ?>
                 </ul>
             </div>

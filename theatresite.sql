@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 13 2022 г., 03:29
+-- Время создания: Сен 14 2022 г., 02:38
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -49,24 +49,39 @@ INSERT INTO `poster` (`id`, `img`, `name`, `date`, `place`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `theatrezal`
+--
+
+CREATE TABLE `theatrezal` (
+  `id` int NOT NULL,
+  `idposter` int NOT NULL,
+  `numbersit` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `statusit` varchar(255) NOT NULL,
+  `sitplace` varchar(255) NOT NULL,
+  `idreserved` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
   `login` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `login`, `password`, `type`) VALUES
-(3, 'Dima', '$2y$10$cLXiNuo8HvnCgGYU8BHi3.Fdq95XdaIJlYuiHoHf60watUP6V1iGm', 'image/jpeg'),
-(9, 'Dima', '', ''),
-(10, 'Dima', '$2y$10$WDt0BPMSfEe0fBsV/Pli5.ttCo7ixWzCqleiMjyyppaxk8Gw6P1Ii', 'image/jpeg');
+INSERT INTO `user` (`id`, `login`, `password`) VALUES
+(11, 'фыв', '$2y$10$WBrzM9gpepsf7HW5YUwhL.3WY5r/0RzPEr3d2SqTob9MkNvQZw66O'),
+(12, 'фыв', '$2y$10$7eJ5PKr9c3lYXz/2xUt7Je6NZAYkWiVdbYERIYatzemI8uY/wf3zi'),
+(13, 'Dima', '$2y$10$lkp1I5fUcoywRwprfwLc6.97Lyr5wXWW30RNDoKln.SXurjxyGqNK');
 
 --
 -- Индексы сохранённых таблиц
@@ -76,6 +91,12 @@ INSERT INTO `user` (`id`, `login`, `password`, `type`) VALUES
 -- Индексы таблицы `poster`
 --
 ALTER TABLE `poster`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `theatrezal`
+--
+ALTER TABLE `theatrezal`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -95,10 +116,16 @@ ALTER TABLE `poster`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT для таблицы `theatrezal`
+--
+ALTER TABLE `theatrezal`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,10 +1,5 @@
 <?php
-
-session_start();
-$conn = mysqli_connect("localhost", "root", "", "theatresite");
-if (!$conn) {
-    die("Ошибка: " . mysqli_connect_error());
-}
+include 'connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -44,35 +39,38 @@ if (!$conn) {
     </header>
 
     <main class="main">
-        <section class="section">
+        <section class="section-reg">
             <div class="container reg-container">
-                <form action="reg.php" method="POST" enctype="multipart/form-data">
-                    <h2>Введите данные для регистрации</h2>
-                    <p>Логин: <input type="text" name="login" required></p>
-                    <p>Пароль: <input type="password" name="password" required></p>
-                    <p>Выберите файл для аватарки: <input type="file" name="filename" size="10" required></p>
-                    <p><input type="submit" name="submitreg" value="Отправить"></p>
+                <div class="login-wrapper">
+                    <h2 class="reg-header">
+                        Введите данные аккаунта
+                    </h2>
+                    <form action="reg.php" class="reg-form form" method="POST">
+                        <label for="login">Логин:</label>
+                        <input class="reg-input" type="text" name="login" id="login" required>
+                        <label for="password">Пароль:</label>
+                        <input class="reg-input" type="password" name="password" id="password" required>
+                        <input type="submit" name="submitreg" class="reg-btn btn">
+                    </form>
 
                     <?php
-
                     if (isset($_POST['submitreg'])) {
-                        $name = $_FILES["filename"]["name"];
-                        $type = $_FILES["filename"]["type"];
-                        $path = __DIR__ . '/img/';
-                        move_uploaded_file($_FILES["filename"]["tmp_name"], $path . $name);
                         $login = $_POST["login"];
                         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                        $userInsertion = "INSERT INTO `user` (`login`, `password`, `type`) VALUES ('$login', '$password', '$type')";
+                        $userInsertion = "INSERT INTO `user` (`login`, `password`) VALUES ('$login', '$password')";
                         if ($conn->query($userInsertion)) {
-                            echo "<p class='reg__paragraph'>" . "Регистрация прошла успешно" . "</p>";
-                           
+                            echo "<p class='reg-p'>" . "Регистрация прошла успешно" . "</p>";
                         } else {
                             echo "<p>" . "Ошибка:" . $conn->error . "</p>";
                         }
                     }
 
                     ?>
-                </form>
+                    </form>
+
+
+                </div>
+
             </div>
         </section>
     </main>

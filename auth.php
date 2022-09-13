@@ -1,12 +1,6 @@
 <?php
-
-session_start();
-$conn = mysqli_connect("localhost", "root", "", "theatresite");
-if (!$conn) {
-    die("Ошибка: " . mysqli_connect_error());
-}
+include 'connect.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -44,36 +38,41 @@ if (!$conn) {
     </header>
 
     <main class="main">
-        <section class="section">
-            <div class="container auth-container">
+        <section class="section-reg">
+            <div class="container reg-container">
+                <div class="login-wrapper">
+                    <h2 class="login-header">Авторизация</h2>
 
-                <form action="auth.php" method="POST">
-                    <h2>Введите данные для авторизации</h2>
-                    <p>Логин: <input type="text" name="login"></p>
-                    <p>Пароль: <input type="password" name="password"></p>
-                    <p><input type="submit" value="Отправить"></p>
-                </form>
-                <?php
-                if (isset($_POST["login"]) && isset($_POST["password"])) {
-                    $login = $_POST["login"];
-                    $auth = "SELECT * FROM `user` WHERE login='$login'";
-                    $authResult = mysqli_query($conn, $auth);
-                    $authAssoc = mysqli_fetch_assoc($authResult);
-                    if (!empty($authAssoc)) {
-                        $hash = $authAssoc['password'];
-                        if (password_verify($_POST['password'], $hash)) {
-                            $userid = $authAssoc['id'];
-                            $_SESSION["userid"] = $userid;
-                            echo "Авторизация успешна";
+                    <form action="auth.php" class="reg-form form" method="POST">
+                        <label for="login">Логин:</label>
+                        <input class="reg-input" type="text" name="login" id="login" required>
+                        <label for="password">Пароль:</label>
+                        <input class="reg-input" type="password" name="password" id="password" required>
+                        <input type="submit" name="submitreg" class="reg-btn btn">
+                    </form>
+
+                    <?php
+                    if (isset($_POST["login"]) && isset($_POST["password"])) {
+                        $login = $_POST["login"];
+                        $auth = "SELECT * FROM `user` WHERE login='$login'";
+                        $authResult = mysqli_query($conn, $auth);
+                        $authAssoc = mysqli_fetch_assoc($authResult);
+                        if (!empty($authAssoc)) {
+                            $hash = $authAssoc['password'];
+                            if (password_verify($_POST['password'], $hash)) {
+                                $userid = $authAssoc['id'];
+                                $_SESSION["userid"] = $userid;
+                                echo "Авторизация успешна";
+                            } else {
+                                echo "Пароль неверный";
+                            }
                         } else {
-                            echo "Пароль неверный";
+                            echo "Пользователя с таким логином не существует(";
                         }
-                    } else {
-                        echo "Пользователя с таким логином не существует(";
                     }
-                }
+                    ?>
+                </div>
 
-                ?>
             </div>
         </section>
     </main>
