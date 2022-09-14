@@ -38,17 +38,17 @@ if (!$conn) {
                     </li>
                     </li>
                     <li>
-                        <a href="#">Контакты</a>
+                    <a href="profil.php">Профиль</a>
                     </li>
                 </ul>
                 <?php
                 echo "<ul class='header-cabinet'>";
                 if (isset($_SESSION["userid"])) {
-                    $currentID = $_SESSION["userid"];
-                    $loginSelect = "SELECT login FROM `user` WHERE id = '$currentID'";
-                    $loginResult = mysqli_query($conn, $loginSelect);
-                    $loginFetch = mysqli_fetch_array($loginResult);
-                    echo "<span class ='nameclass'>" . $loginFetch['login'] . "</span>";
+                    $userlogin  = $_SESSION["userid"];
+                    $userSelect = "SELECT login FROM `user` WHERE id = '$userlogin'";
+                    $userResult = mysqli_query($conn, $userSelect);
+                    $userFetch = mysqli_fetch_array($userResult);
+                    echo "<span class ='nameclass'>" . $userFetch['login'] . "</span>";
                     echo "<a href='exit.php'>" . " выйти?" . "</a>";
                 } else {
                     echo "<a href='auth.php'>" . "Авторизация" . "</a>";
@@ -66,12 +66,10 @@ if (!$conn) {
                     АФИША ТЕАТРОВ ВОЛГОГРАДА
                 </h1>
                 <p class="container header-info">На&nbsp;сайте представлена полная афиша всех главных театральных событий Волгограда.
-                    Вы&nbsp;можете бронировать билеты, покупать онлайн и&nbsp;заказывать доставку на&nbsp;дом.</p>
             </div>
             <div class="poster">
                 <ul class="poster-list">
                     <?php
-                  
                     foreach ($posterSelectResult as $posterRow) {
                         echo "<li class='poster-item'>";
                         echo "<img src='img/" . $posterRow['img'] . "' alt=''>";
@@ -83,12 +81,12 @@ if (!$conn) {
                         echo "<span class='poster-span'>" . "$posterRow[place]" . "</span>";
                         echo "<span class='poster-span'>" . "$posterRow[price]" . "</span>";
                         echo "<div class='theatre-about-wrapper'>";
-                        echo "<a href='theatre.php?posterid=" . $posterRow['id'] . "' class='about'>" . "Купить билет" . "</a>";
+                        echo "<a href='theatre.php?posterid=" . $posterRow['id'] . "' class='about-btn'>" . "Купить билет" . "</a>";
                         echo "</div>";
                         echo "</div>";
                         echo "</li>";
                     }
-                   
+
                     ?>
                 </ul>
             </div>

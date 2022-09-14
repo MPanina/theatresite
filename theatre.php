@@ -29,7 +29,7 @@
                     </li>
                     </li>
                     <li>
-                        <a href="#">Контакты</a>
+                        <a href="profil.php">Профиль</a>
                     </li>
                 </ul>
                 <?php
@@ -51,33 +51,59 @@
     </header>
 
     <main class="main">
-        <section class="section theatre-about theatre-about__section">
+        <section class="section theatre-about__section">
             <div class="container theatre-about__container">
+              
                 <?php
                 $poster = $_GET['posterid'];
                 $posterIDSelect = "SELECT * FROM `poster` WHERE id = '$poster'";
                 $posterIDSelectResult = mysqli_query($conn, $posterIDSelect);
                 $posterIDSelectRow = mysqli_fetch_array($posterIDSelectResult, MYSQLI_ASSOC);
-                $posterZalSelect = "SELECT * FROM `theatrezal` WHERE idposter = '$poster' AND numbersit = 'свободное'";
+                $posterZalSelect = "SELECT * FROM `theatrezal` WHERE id_poster = '$poster' AND sit_status = 'свободное'";
                 $posterZalSelectResult = mysqli_query($conn, $posterZalSelect);
                 $posterZalAssoc = mysqli_fetch_assoc($posterZalSelectResult);
+
                 foreach ($posterIDSelectResult as $posterIDRow) {
-                    echo "<div class='theatre-about__wrapper'>";
-                    echo "<img src='img/" . $posterIDRow['img'] . "' class='theatre__image alt=''>";
+                    echo "<div class='theatre-about_wrapper'>";
+                    echo "<img src='img/" . $posterIDRow['img'] . "' class='theatre__image' alt=''>";
                     echo "<div class='theatre-about__content__wrapper'>";
                     echo "<h2 class='about__header'>" .
                         "<a href='index.php?name=' class='about__link'>" . $posterIDRow['name'] . "</a>" .
                         "</h2>";
                     echo "<span class='theatre-about__span'>" . "$posterIDRow[date]" . "</span>";
                     echo "<span class='theatre-about__span'>" . "$posterIDRow[place]" . "</span>";
-                    echo "<span class='theatre-about__span'>" . "$posterIDRow[price]" . "</span>";
+                    echo "<span class='theatre-about__span'>" . "Стоимость билетов:&nbsp;" . "$posterIDRow[price]" . "</span>";
+                    echo "</div>";
                     echo "</div>";
                 }
-                echo "<h2 class='theatre-about_header'>Места</h2>";
+                echo "<h2 class='about__header'>Места</h2>";
                 if (empty($posterZalAssoc) && !isset($_GET['placeid'])) {
                     echo "<p class='sit_empty'>" . "мест нет" . "</p>";
                 }
-           
+                if (isset($_GET['placeid'])) {
+                    $placeid = $_GET['placeid'];
+                    $placeupdate = "UPDATE `thatrezal` SET `sit_status` = 'занятое', `reserved_by_id` = '$userid' WHERE id = '$placeid'";
+                    if ($conn->query($placeupdate)) {
+                        echo "<p class='sit__update'> Место зарезервировано </p>";
+                    } else {
+                        echo "<p class='sit__update'> Место зарезервировано" . $conn->error  . "</p>";
+                    }
+                } else {
+                    echo "<div class ='sit-about'>";
+                    echo "<ul class='sit__list sit'>";
+                    foreach ($posterZalSelectResult as $posterZalRow) {
+
+                        echo "<li class='sit__item'>";
+                        echo "<h3 class='sit__header'>" . "Номер места: " . "$posterZalRow[sit_num]" . "</h3>";
+                        echo "<p class='sit__paragraph'>" . "Цена места: " . "$posterZalRow[sit_price] " . "&#8381" . "</p>";
+                        echo "<p class='sit__paragraph'>" . "Расположение места: " . "$posterZalRow[sit_direction]" . "</p>";
+                        echo "<a href='theatre.php?posterid=" . $posterZalRow['id_poster'] . "&placeid=" . $posterZalRow['id'] . "' class='sit__link'>" . "[Забронировать]" . "</a>";
+                        echo "</li>";
+                    }
+                    echo "</ul>";
+                    echo "</div>";
+                }
+
                 ?>
             </div>
         </section>

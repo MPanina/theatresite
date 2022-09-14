@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 14 2022 г., 02:38
+-- Время создания: Сен 15 2022 г., 01:02
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -44,7 +44,7 @@ INSERT INTO `poster` (`id`, `img`, `name`, `date`, `place`, `price`) VALUES
 (1, 'gdedima.jpg', 'Спектакль &quot;Поиски Иванова&quot;', '28 Сент. СР 19:00', 'Центральный Концертный Зал', '1 000 — 2 500₽'),
 (2, 'durka.jpg', 'Спектакль &quot;Палата Бизнес-Класса&quot;', '10 Окт. ПН 19:00', 'ДК Октябрь', '1 000 — 2 800₽'),
 (3, 'dom.jpg', 'Спектакль &quot;Возвращение Домой&quot;', '1 Сент. СР 20:00', 'ДК Октябрь', '250 — 1 500₽'),
-(4, 'lebedi2.jpg', 'Балет &quot;Лебединое Озеро&quot;', '03 Нояб. ЧТ 19:00', '&quot;Царицынская опера&quot;', '800 — 2 200₽');
+(4, 'lebedi2.jpg', 'Балет &quot;Борьба Оленей&quot;', '03 Нояб. ЧТ 19:00', '&quot;Царицынская опера&quot;', '800 — 2 200₽');
 
 -- --------------------------------------------------------
 
@@ -54,13 +54,20 @@ INSERT INTO `poster` (`id`, `img`, `name`, `date`, `place`, `price`) VALUES
 
 CREATE TABLE `theatrezal` (
   `id` int NOT NULL,
-  `idposter` int NOT NULL,
-  `numbersit` varchar(255) NOT NULL,
-  `price` varchar(255) NOT NULL,
-  `statusit` varchar(255) NOT NULL,
-  `sitplace` varchar(255) NOT NULL,
-  `idreserved` varchar(255) NOT NULL
+  `id_poster` int NOT NULL,
+  `sit_num` varchar(255) NOT NULL,
+  `sit_status` varchar(255) NOT NULL,
+  `sit_price` varchar(255) NOT NULL,
+  `sit_direction` varchar(255) NOT NULL,
+  `reserved_by_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `theatrezal`
+--
+
+INSERT INTO `theatrezal` (`id`, `id_poster`, `sit_num`, `sit_status`, `sit_price`, `sit_direction`, `reserved_by_id`) VALUES
+(1, 1, '1', 'свободное', '1500', 'переднее', '');
 
 -- --------------------------------------------------------
 
@@ -119,7 +126,7 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT для таблицы `theatrezal`
 --
 ALTER TABLE `theatrezal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
