@@ -26,7 +26,7 @@ include 'connect.php';
                     <li>
                         <a href="#">Новости</a>
                     <li>
-                        <a href="reg.php">Регистарция</a>
+                        <a href="reg.php">Регистрация</a>
                     </li>
                     </li>
                     <li>

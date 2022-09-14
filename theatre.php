@@ -25,7 +25,7 @@
                     <li>
                         <a href="#">Новости</a>
                     <li>
-                        <a href="reg.php">Регистарция</a>
+                        <a href="reg.php">Регистрация</a>
                     </li>
                     </li>
                     <li>
@@ -51,8 +51,8 @@
     </header>
 
     <main class="main">
-        <section class="section concert-about concert-about__section">
-            <div class="container concert-about__container">
+        <section class="section theatre-about theatre-about__section">
+            <div class="container theatre-about__container">
                 <?php
                 $poster = $_GET['posterid'];
                 $posterIDSelect = "SELECT * FROM `poster` WHERE id = '$poster'";
@@ -62,18 +62,21 @@
                 $posterZalSelectResult = mysqli_query($conn, $posterZalSelect);
                 $posterZalAssoc = mysqli_fetch_assoc($posterZalSelectResult);
                 foreach ($posterIDSelectResult as $posterIDRow) {
-                    echo "<div class='concert-about__wrapper'>";
-                    echo "<img src='img/" . $posterIDRow['img'] . "' class='concert__image alt=''>";
-                    echo "<div class='concert-about__content__wrapper'>";
+                    echo "<div class='theatre-about__wrapper'>";
+                    echo "<img src='img/" . $posterIDRow['img'] . "' class='theatre__image alt=''>";
+                    echo "<div class='theatre-about__content__wrapper'>";
                     echo "<h2 class='about__header'>" .
                         "<a href='index.php?name=' class='about__link'>" . $posterIDRow['name'] . "</a>" .
                         "</h2>";
-                    echo "<span class='concert-about__span'>" . "$posterIDRow[date]" . "</span>";
-                    echo "<span class='concert-about__span'>" . "$posterIDRow[place]" . "</span>";
-                    echo "<span class='concert-about__span'>" . "$posterIDRow[price]" . "</span>";
+                    echo "<span class='theatre-about__span'>" . "$posterIDRow[date]" . "</span>";
+                    echo "<span class='theatre-about__span'>" . "$posterIDRow[place]" . "</span>";
+                    echo "<span class='theatre-about__span'>" . "$posterIDRow[price]" . "</span>";
                     echo "</div>";
                 }
-             
+                echo "<h2 class='theatre-about_header'>Места</h2>";
+                if (empty($posterZalAssoc) && !isset($_GET['placeid'])) {
+                    echo "<p class='sit_empty'>" . "мест нет" . "</p>";
+                }
            
                 ?>
             </div>

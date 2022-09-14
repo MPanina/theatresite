@@ -112,7 +112,6 @@ img {
 }
 .about {
     padding: 10px;
-
     color: rgb(0, 0, 0);
     background-color: rgb(174, 174, 174);
     border: 1px solid rgb(195, 195, 195);
@@ -167,7 +166,7 @@ img {
 
 /**/
 
-.concert__item img {
+.theatre__item img {
     display: flex;
     flex: 1;
     min-height: 320px;
@@ -177,33 +176,33 @@ img {
     border-bottom: 1px solid #000;
 }
 
-.concert__image {
+.theatre__image {
     max-height: 300px;
 }
 
-.concert-about__wrapper {
+.theatre-about__wrapper {
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
 }
 
-.concert-about__header {
+.theatre-about__header {
     margin: 0;
     margin-bottom: 15px;
 }
 
-.concert-about__container {
+.theatre-about__container {
     padding-top: 50px;
 }
 
-.concert-about__content__wrapper {
+.theatre-about__content__wrapper {
     display: flex;
     flex-direction: column;
     align-content: center;
     padding: 0 15px;
 }
 
-.concert__content__wrapper {
+.theatre__content__wrapper {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -211,32 +210,32 @@ img {
     padding: 10px;
 }
 
-.concert__header {
+.theatre__header {
     margin: 0;
     margin-bottom: 5px;
 }
 
-.concert__descr {
+.theatre__descr {
     margin: 0;
     margin-bottom: 10px;
 }
 
-.concert__link {
+.theatre__link {
     margin-bottom: 10px;
 }
 
-.concert__time {
+.theatre__time {
     font-size: 14px;
     margin-bottom: 5px;
 }
 
-.concert__span {
+.theatre__span {
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 5px;
 }
 
-.concert__about {
+.theatre__about {
     padding: 10px;
     color: #fff;
     background-color: #000;
