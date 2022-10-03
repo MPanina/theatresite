@@ -77,6 +77,7 @@ include 'connect.php';
                         echo "<p class='sit__paragraph'>" . "Номер места: " . "$sitRow[sit_num]" . "</p>";
                         echo "<p class='sit__paragraph'>" . "Цена места: " . "$sitRow[sit_price] " . "&#8381" . "</p>";
                         echo "<p class='sit__paragraph'>" . "Расположение места: " . "$sitRow[sit_direction]" . "</p>";
+                        /*echo "<a href='theatre.php?posterid=" . $sitRow['id_poster'] . "&placeid=" . $sitRow['id'] . "' class='sit__link'>" . "[Cнять бронь]" . "</a>";*/
 
                         echo "</li>";
                     }
