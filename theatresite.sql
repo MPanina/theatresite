@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 15 2022 г., 01:02
+-- Время создания: Окт 04 2022 г., 00:34
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -55,6 +55,7 @@ INSERT INTO `poster` (`id`, `img`, `name`, `date`, `place`, `price`) VALUES
 CREATE TABLE `theatrezal` (
   `id` int NOT NULL,
   `id_poster` int NOT NULL,
+  `name` varchar(255) NOT NULL,
   `sit_num` varchar(255) NOT NULL,
   `sit_status` varchar(255) NOT NULL,
   `sit_price` varchar(255) NOT NULL,
@@ -66,8 +67,12 @@ CREATE TABLE `theatrezal` (
 -- Дамп данных таблицы `theatrezal`
 --
 
-INSERT INTO `theatrezal` (`id`, `id_poster`, `sit_num`, `sit_status`, `sit_price`, `sit_direction`, `reserved_by_id`) VALUES
-(1, 1, '1', 'свободное', '1500', 'переднее', '');
+INSERT INTO `theatrezal` (`id`, `id_poster`, `name`, `sit_num`, `sit_status`, `sit_price`, `sit_direction`, `reserved_by_id`) VALUES
+(1, 1, 'Спектакль &quot;Поиски Иванова&quot;', '1', 'занятое', '1500₽', 'переднее', '13'),
+(2, 1, 'Спектакль &quot;Поиски Иванова&quot;', '2', 'свободное', '1500₽', 'переднее', ''),
+(3, 3, 'Спектакль &quot;Возвращение Домой&quot;', '25', 'свободное', '750₽', 'середина', ''),
+(4, 2, 'Спектакль &quot;Палата Бизнес-Класса&quot;\r\n', '5', 'свободное', '2 800₽', 'переднее', ''),
+(5, 4, 'Спектакль &quot;Палата Бизнес-Класса&quot;', '100', 'свободное', '800₽', 'заднее', '');
 
 -- --------------------------------------------------------
 
@@ -86,8 +91,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `login`, `password`) VALUES
-(11, 'фыв', '$2y$10$WBrzM9gpepsf7HW5YUwhL.3WY5r/0RzPEr3d2SqTob9MkNvQZw66O'),
-(12, 'фыв', '$2y$10$7eJ5PKr9c3lYXz/2xUt7Je6NZAYkWiVdbYERIYatzemI8uY/wf3zi'),
 (13, 'Dima', '$2y$10$lkp1I5fUcoywRwprfwLc6.97Lyr5wXWW30RNDoKln.SXurjxyGqNK');
 
 --
@@ -126,7 +129,7 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT для таблицы `theatrezal`
 --
 ALTER TABLE `theatrezal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
