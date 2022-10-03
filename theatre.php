@@ -53,7 +53,7 @@
     <main class="main">
         <section class="section theatre-about__section">
             <div class="container theatre-about__container">
-              
+
                 <?php
                 $poster = $_GET['posterid'];
                 $posterIDSelect = "SELECT * FROM `poster` WHERE id = '$poster'";
@@ -82,14 +82,13 @@
                 }
                 if (isset($_GET['placeid'])) {
                     $placeid = $_GET['placeid'];
-                    $placeupdate = "UPDATE `thatrezal` SET `sit_status` = 'занятое', `reserved_by_id` = '$userid' WHERE id = '$placeid'";
+                    $placeupdate = "UPDATE `theatrezal` SET `sit_status` = 'занятое', `reserved_by_id` = '$currentID' WHERE id = '$placeid'";
                     if ($conn->query($placeupdate)) {
                         echo "<p class='sit__update'> Место зарезервировано </p>";
                     } else {
                         echo "<p class='sit__update'> Место зарезервировано" . $conn->error  . "</p>";
                     }
                 } else {
-                    echo "<div class ='sit-about'>";
                     echo "<ul class='sit__list sit'>";
                     foreach ($posterZalSelectResult as $posterZalRow) {
 
@@ -101,7 +100,6 @@
                         echo "</li>";
                     }
                     echo "</ul>";
-                    echo "</div>";
                 }
 
                 ?>
