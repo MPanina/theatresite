@@ -94,9 +94,9 @@
 
                         echo "<li class='sit__item'>";
                         echo "<h3 class='sit__header'>" . "Номер места: " . "$posterZalRow[sit_num]" . "</h3>";
-                        echo "<p class='sit__paragraph'>" . "Цена места: " . "$posterZalRow[sit_price] " . "&#8381" . "</p>";
+                        echo "<p class='sit__paragraph'>" . "Цена места: " . "$posterZalRow[sit_price] "  . "</p>";
                         echo "<p class='sit__paragraph'>" . "Расположение места: " . "$posterZalRow[sit_direction]" . "</p>";
-                        echo "<a href='theatre.php?posterid=" . $posterZalRow['id_poster'] . "&placeid=" . $posterZalRow['id'] . "' class='sit__link'>" . "[Забронировать]" . "</a>";
+                        echo "<a href='theatre.php?posterid=" . $posterZalRow['id_poster'] . "&placeid=" . $posterZalRow['id'] . "' class='sit__link'>" . "Забронировать" . "</a>";
                         echo "</li>";
                     }
                     echo "</ul>";

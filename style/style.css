@@ -2,6 +2,12 @@ html {
     box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
 a {
     align-items: center;
     text-decoration: none;
@@ -11,6 +17,7 @@ a {
 }
 
 body {
+    min-width: 320px;
     background-color: rgb(241, 237, 237);
     font-family: 'Open Sans', sans-serif;
 }
@@ -20,6 +27,10 @@ body {
 
 }
 
+img {
+    max-width: 100%;
+}
+
 .flex {
     display: flex;
 }
@@ -27,12 +38,14 @@ body {
 .container {
     padding: 0 15px;
     margin: 0 auto;
-    max-width: 1024px;
+    max-width: 1770px;
 }
 
 ul {
     list-style: none;
-    flex-wrap: wrap
+    padding: 0;
+    margin: 0;
+
 }
 
 .nameclass {
@@ -47,18 +60,34 @@ ul {
     margin-bottom: 30px;
 }
 
+.menu {
+    margin-bottom: 15px;
+}
+
 .header-info {
     font-size: 24px;
 
 }
 
+.header-nav {
+    padding: 10px;
+}
+
+.poster-list {
+    display: flex;
+
+}
+
+.poster-container {
+    padding: 20px;
+}
+
 .poster-item {
-    width: calc((100% - 30px) / 5);
+    width: calc((100% - 30px * 2) / 3);
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    max-height: 400px;
-    min-height: 400px;
+    /* max-height: 350px; */
 }
 
 .poster-item:not(:last-child) {
@@ -68,25 +97,57 @@ ul {
 .poster-item img {
     display: flex;
     flex: 1;
-    object-fit: content;
-    overflow: block;
+    max-height: 350px;
+    min-height: 350px;
+    object-fit: fill;
+    overflow: hidden;
+}
+
+.poster-content-wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px solid rgb(180, 180, 180);
+    border-top: none;
+ 
+}
+
+
+/* .poster-item {
+    width: calc((100% - 30px * 3) / 4);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    min-height: 400px;
+}
+.poster-item:not(:last-child) {
+    margin-right: 30px;
+}
+
+.poster-item img {
+    display: flex;
+    flex: 1;
+    object-fit: fill;
+    overflow: hidden; 
     max-height: 400px;
     min-height: 400px;
 }
 
 .poster-content-wrapper {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-content: center;
     padding: 10px;
     border: 2px solid rgb(180, 180, 180);
     border-top: none;
-}
+} */
 
 .poster-header {
     margin: 0;
     margin-bottom: 5px;
-
 }
 
 .poster-link {
@@ -98,14 +159,6 @@ ul {
     font-size: 20px;
 }
 
-.poster-list {
-    display: flex;
-    justify-content: center;
-}
-
-img {
-    max-width: 100%;
-}
 
 .theatre-about-wrapper {
     display: flex;
@@ -178,26 +231,26 @@ img {
 }
 
 .theatre__image {
-    display: flex;
-    flex: 1;
+    margin-right: 20px;
     min-height: 320px;
     max-height: 320px;
     object-fit: scale-down;
     overflow: hidden;
 }
 
-.theatre-about_wrapper { 
+.theatre-about_wrapper {
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
     line-height: 30px;
 }
 
-.theatre-about__content__wrapper {  /*находится внутри theatre-about_wrapper*/
+.theatre-about__content__wrapper {
+    /*находится внутри theatre-about_wrapper*/
     display: flex;
     flex-direction: column;
     align-content: center;
-    
+
 }
 
 .about__header {
@@ -205,8 +258,15 @@ img {
     margin-bottom: 15px;
 }
 
+.theatre-about__span {
+    font-size: 20px;
+}
 .sit__link {
-    color: rgb(9, 56, 6);
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(174, 174, 174);
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 4px;
 }
 
 .sit__list {
@@ -219,6 +279,7 @@ img {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-size: 20px;
 }
 
 .sit__header {
@@ -231,4 +292,9 @@ img {
 
 .sit__item {
     margin-bottom: 10px;
+
+}
+
+.theatre-about-wrapper {
+    align-items: center;
 }

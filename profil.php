@@ -77,12 +77,26 @@ include 'connect.php';
                         echo "<p class='sit__paragraph'>" . "Номер места: " . "$sitRow[sit_num]" . "</p>";
                         echo "<p class='sit__paragraph'>" . "Цена места: " . "$sitRow[sit_price] " . "&#8381" . "</p>";
                         echo "<p class='sit__paragraph'>" . "Расположение места: " . "$sitRow[sit_direction]" . "</p>";
-                        /*echo "<a href='theatre.php?posterid=" . $sitRow['id_poster'] . "&placeid=" . $sitRow['id'] . "' class='sit__link'>" . "[Cнять бронь]" . "</a>";*/
+                        echo "<a href='profil.php?posterid=" . $sitRow['id_poster'] . "&placeid=" . $sitRow['id'] . "' class='sit__link'>" . "Cнять бронь" . "</a>";
 
                         echo "</li>";
                     }
                     echo "</ul>";
                     ?>
+                    <?php
+                    if (isset($_GET['posterid']) && isset($_GET['placeid'])) {
+                        $posterid = $_GET['posterid'];
+                        $placeid = $_GET['placeid'];
+                        $placeupdate = "UPDATE `theatrezal` SET `sit_status` = 'свободное', `reserved_by_id` = '' WHERE id = '$placeid'";
+                        if ($conn->query($placeupdate)) {
+                            echo "<p class='sit__update'> Бронь удалена </p>";
+                        } 
+                    
+                        }
+                    ?>
+
+
+                
                 </div>
             </div>
         </section>
